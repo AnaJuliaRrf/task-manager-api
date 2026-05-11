@@ -1,0 +1,17 @@
+name: Deploy Backend - Render
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Render via Hook
+        run: |
+          curl -X POST https://api.render.com/deploy/srv-${{ secrets.SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
