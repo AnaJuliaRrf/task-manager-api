@@ -68,9 +68,14 @@ app.delete('/tasks/:id', (req, res) => {
   });
 });
 
-// Rota inicial
+// Rota inicial com informações da versão
 app.get('/', (req, res) => {
-  res.send('API Task Manager funcionando!');
+  res.json({
+    status: 'API Task Manager funcionando com CI/CD',
+    versao: '1.0.1',
+    cors_ativo: true,
+    frontend_integrado: true
+  });
 });
 
 app.listen(PORT, () => {
